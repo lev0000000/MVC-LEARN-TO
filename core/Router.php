@@ -1,34 +1,58 @@
-<?php 
+<?php
 
-    namespace Core;
+namespace PHPFramework;
 
-    class Router {
+class Router
+{
 
-        public function getTrack($routes, $uri) {
-            foreach ($routes as $route) {
-				$pattern = $this->createPattern($route->path); 
-				if (preg_match($pattern, $uri, $params)) {
-					$params = $this->clearParams($params); 
-					return new Track($route->controller, $route->action, $params);
-				}
-			}
-            return new Track('error', '404',['message' => 'Page not found']);
-        }
 
-        private function createPattern($path){
-			return '#^' . preg_replace('#/:([^/]+)#', '/(?<$1>[^/]+)', $path) . '/?$#';
-		}
+    protected array $routes = [];
 
-        private function clearParams($params){
-            $result = [];
-            
-            foreach ($params as $key => $param) {
-                if (!is_int($key)) {
-                    $result[$key] = $param;
-                }
-            }
-            
-            return $result;
-        }
+    protected array $route_params = [];
 
+    public function __construct(
+        protected Request $request,
+        protected Response $response
+    ) {
+        $this->request = $request;
+        $this->response = $response;
     }
+
+    public function add($patch, $callback, $method): self
+    {
+        $path = trim($patch, '/');
+        if (is_array($method)) {
+            $method = array_map('strtoupper', $method);
+        } else {
+            $method = [strtoupper($method)];
+        }
+        $this->routes[] = [
+            'path' => $path,
+            'callback' => $callback,
+            'middleware' => '',
+            'method' => $method
+        ];
+
+        dump($this->routes);
+        return $this;
+    }
+
+    public function get($patch, $callback): self
+    {
+        return $this->add($patch, $callback, 'get');
+    }
+
+    public function post($patch, $callback): self
+    {
+        return $this->add($patch, $callback, 'post');
+    }
+
+    public function dispatch() :mixed {
+        return "TEST";
+    }
+
+    public function getRoutes($routes)
+    {
+        return $this->routes;
+    }
+}
