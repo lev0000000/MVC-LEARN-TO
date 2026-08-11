@@ -35,4 +35,19 @@ class Request
     {
         return $_POST[$name] ?? $default;
     }
+
+    public function getPath() :string
+    {
+      return $this->removeQueryPath($this->uri);
+    }
+
+    protected function removeQueryPath($uri) :string
+    {
+        if ($uri){
+            $params = explode('?', $uri);
+            return trim($params[0],'/');
+        }
+
+        return '/';
+    }
 }

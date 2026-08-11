@@ -48,8 +48,10 @@ class Router
     }
 
     public function dispatch() :mixed {
-        return "TEST";
-    }
+        $path = $this->request->getPath();
+        $this->matchRoutes($this->routes);
+        return $path;
+    }3
 
     public function getRoutes($routes)
     {
