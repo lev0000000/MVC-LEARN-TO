@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-class ContactController {
+class ContactController extends BaseController {
     public function index() {
     }
 }

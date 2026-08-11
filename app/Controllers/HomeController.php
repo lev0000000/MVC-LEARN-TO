@@ -2,9 +2,12 @@
 
     namespace App\Controllers;
 
-    class HomeController {
+    class HomeController extends BaseController {
 
         public function __construct() {
-            echo 'Hello World';
+        }
+
+        public function index(){
+            echo view('home', ['title' => 'Home Page']);
         }
     }

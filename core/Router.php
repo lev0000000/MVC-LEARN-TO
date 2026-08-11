@@ -18,22 +18,22 @@ class Router
         $this->response = $response;
     }
 
-    public function add($patch, $callback, $method): self
+    public function add($path, $callback, $method): self
     {
-        $path = trim($patch, '/');
+
         if (is_array($method)) {
             $method = array_map('strtoupper', $method);
         } else {
             $method = [strtoupper($method)];
         }
         $this->routes[] = [
-            'path' => $path,
+            'path' => "/$path",
             'callback' => $callback,
             'middleware' => '',
-            'method' => $method
+            'method' => $method,
+            'needToken' => true,
         ];
 
-        dump($this->routes);
         return $this;
     }
 
@@ -48,13 +48,37 @@ class Router
     }
 
     public function dispatch() :mixed {
-        $path = $this->request->getPath();
-        $this->matchRoutes($this->routes);
-        return $path;
-    }3
+        $path = $this->request->getPath(); // из класса реквест получаем патч роута 
+        $route = $this->matchRoutes($path); // мэтчим роут 
+        if(!$route){
+            abort('404 Not Found', 404);
+        }
+        if(is_array($route['callback'])){
+            $route['callback'][0] = new $route['callback'][0];
+        }
+        return call_user_func($route['callback']); // вызываем колбэк роута 
+    }
 
     public function getRoutes($routes)
     {
         return $this->routes;
+    }
+
+    protected function matchRoutes($path):mixed
+    {
+        foreach ($this->routes as $route) {
+            if(
+                preg_match("#^{$route['path']}$#", "/{$path}", $matches) && in_array($this->request->getMethod(), $route['method'])){
+                foreach ($matches as $key => $match) {
+                    if (is_string($key)) {
+                        $this->route_params[$key] = $match;
+                    }
+                }
+
+                return $route;
+            }
+        }
+
+        return false;
     }
 }
