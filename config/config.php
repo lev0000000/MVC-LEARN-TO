@@ -9,3 +9,4 @@
     const LAYOUT = "default";
     const CORE = ROOT . "/core";
     const PATH = 'http://localhost:443';
+    const WWW = ROOT . '/public';

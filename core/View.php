@@ -42,4 +42,17 @@ class View
         }
         return 'View rendered';
     }
+
+    public function renderPartial($view, $data = []): string
+    {
+        $views_file = VIEWS . "/{$view}.php";
+        extract($data);
+        if (is_file($views_file)) {
+            ob_start();
+            require $views_file;
+            return ob_get_clean();
+        } else {
+            return "View not found";
+        }
+    }
 }

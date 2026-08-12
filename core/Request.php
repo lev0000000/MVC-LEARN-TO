@@ -41,6 +41,10 @@ class Request
       return $this->removeQueryPath($this->uri);
     }
 
+    public function getData(){
+        return $this->isPost() ? $_POST : $_GET;
+    }
+
     protected function removeQueryPath($uri) :string
     {
         if ($uri){
@@ -49,5 +53,9 @@ class Request
         }
 
         return '/';
+    }
+
+    public function isAjax(){
+        
     }
 }

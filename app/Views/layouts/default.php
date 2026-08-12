@@ -4,9 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?= get_csrf_meta() ?>
     <title>PHPFramework : <?= $title ?></title>
     <link rel="icon" href="<?= base_url('/favicon/favicon.png') ?>">
     <link rel="stylesheet" href="<?= base_url('/assets/bootstrap/css/bootstrap.min.css') ?>">
+
 </head>
 
 <body>
@@ -31,6 +33,7 @@
             </div>
         </div>
     </nav>
+    <?= get_alerts() ?>
     <?= $this->content ?>
 
     <script src="<?= base_url('/assets/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>

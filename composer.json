@@ -8,6 +8,7 @@
     },
     "require": {
         "php" : ">=8.0",
-        "symfony/var-dumper": "^8.1"
+        "symfony/var-dumper": "^8.1",
+        "vlucas/valitron": "^1.4"
     }
 }

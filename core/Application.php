@@ -13,6 +13,8 @@
 
         public View $view;
 
+        public Session $session;
+
         public function __construct()
         {
             self::$app = $this; 
@@ -21,11 +23,20 @@
             $this->response = new Response(); // экз класса ответчика по запросу 
             $this->router = new Router($this->request, $this->response); // экз класса роутинга передает туда созданные классы выше 
             $this->view = new View(LAYOUT);
+            $this->session = new Session();
+            $this->generateCsrfToken();
         }
 
         public function run()
         {
             return $this->router->dispatch(); // из index вызываем диспатч из класса роутинга 
+        }
+
+        public function generateCsrfToken()
+        {
+            if(!session()->has('csrf_token')){
+                $this->session->set('csrf_token', bin2hex(random_bytes(32)));
+            }
         }
 
     }
