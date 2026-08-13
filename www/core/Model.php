@@ -16,9 +16,19 @@ abstract class Model extends \Illuminate\Database\Eloquent\Model {
 
     protected $error = [];
 
+
+    public function save (array $options = []) {
+      foreach($this->attributes as $key => $value ) {
+        if(!in_array($key,$this->fillable)) {
+          unset($this->attributes[$key]);    
+        }
+      }
+      return parent::save();
+    }
+
     public function loadData () :void {
         $data = request()->getData();
-        foreach($this->fillable as $field) {
+        foreach($this->loaded as $field) {
             if(isset($data[$field])) {
                 $this->attributes[$field] = $data[$field];
             }else {

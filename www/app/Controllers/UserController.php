@@ -34,7 +34,16 @@ class UserController extends BaseController
             session()->set('form_errors', $model->getErrors());
             session()->set('form_data', $model->attributes);
         }else{
-            dd($model->attributes);
+            // dump(User::query()->create([
+            //     'name' => $model->attributes['name'],
+            //     'email'=> $model->attributes['email'],
+            //     'password'=> $model->attributes['password'],
+            // ]));
+            if($model->save()){
+                session()->setFlash('success','Thanks for registration');
+            }else{
+                session()->setFlash('error', 'Validation errors');
+            }
             session()->setFlash('info', 'Info message');
             session()->setFlash('success', 'User created');
         }

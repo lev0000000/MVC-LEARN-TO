@@ -6,7 +6,13 @@ use PHPFramework\Model;
 
 class User extends Model{
 
-  protected $fillable = ['name','email','password','confirmPassword'];
+  public $timestamps = false;
+
+  protected $table = "users";
+
+  protected $loaded = ['name','email','password','confirmPassword'];
+
+  protected $fillable = ['name','email','password'];
 
   protected $rules = [
     'required' => ['name','email','password','confirmPassword'],
