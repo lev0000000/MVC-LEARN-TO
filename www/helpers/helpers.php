@@ -97,3 +97,7 @@ function get_csrf_meta()
 {
     return '<meta name="csrf-token" content="' . session()->get('csrf_token') . '">';
 }
+
+function db(){
+    return app()->db;
+}

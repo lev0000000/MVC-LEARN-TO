@@ -10,6 +10,7 @@ const LAYOUT = "default";
 const CORE = ROOT . "/core";
 const PATH = 'http://localhost:443';
 const WWW = ROOT . '/public';
+const ERROR_LOGS = ROOT . '/tmp/error.log' ;
 
 const DB_SETTINGS = [
     'driver' => 'mysql',
@@ -20,4 +21,8 @@ const DB_SETTINGS = [
     'charset' => 'utf8',
     'collation' => 'utf8_unicode_ci',
     'prefix' => '',
+    'options' => [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+    ]
 ];

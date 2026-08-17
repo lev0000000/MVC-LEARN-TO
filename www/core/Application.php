@@ -9,6 +9,8 @@ class Application
 {
     public static ?Application $app; // Статичная переменная для хелпера, чтобы можно было обращаться к ней без создания нового экземляра. 
     protected string $uri;
+
+    public Database $db;
     public Request $request;
 
     public Response $response;
@@ -29,7 +31,8 @@ class Application
         $this->view = new View(LAYOUT);
         $this->session = new Session();
         $this->generateCsrfToken();
-        $this->setDbConnection();
+        // $this->setDbConnection();
+        $this->db = new Database();
     }
 
     public function run()
