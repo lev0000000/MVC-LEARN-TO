@@ -101,3 +101,7 @@ function get_csrf_meta()
 function db(){
     return app()->db;
 }
+
+function check_auth(){
+    return false;
+}

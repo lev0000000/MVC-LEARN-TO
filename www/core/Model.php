@@ -4,17 +4,22 @@ namespace PHPFramework;
 
 use Valitron\Validator;
 
-abstract class Model extends \Illuminate\Database\Eloquent\Model {
+abstract class Model {
 
-    protected $fillable = [];
+    protected string $table;
 
-    public $attributes = [];
+    protected bool $timestamps = false;
+    protected array $fillable = [];
 
-    protected $rules = [];
+    public array $attributes = [];
 
-    protected $labels = [];
+    protected array $rules = [];
 
-    protected $error = [];
+    protected array $labels = [];
+
+    protected array $error = [];
+
+    protected array $loaded = [];
 
 
     public function save (array $options = []) {
@@ -23,7 +28,35 @@ abstract class Model extends \Illuminate\Database\Eloquent\Model {
           unset($this->attributes[$key]);    
         }
       }
-      return parent::save();
+
+      
+
+      $fields_keys = array_keys($this->attributes);
+      
+      $fields = array_map(fn($field) => "`{$field}`", $fields_keys);
+
+      $fields = implode(',', $fields);
+
+      if($this->timestamps){
+        $fields .= ',`created_at`,`updated_at`';
+      }
+
+      $placeholders = array_map(fn($value) => ":{$value}", $fields_keys);
+
+      $placeholders = implode(',', $placeholders);
+
+      if($this->timestamps){
+        $placeholders .= ', :created_at, :updated_at';
+        $this->attributes['created_at'] = date('Y-m-d H:i:s');
+        $this->attributes['updated_at'] = date('Y-m-d H:i:s');
+      }
+
+      $query = 'insert into ' . $this->table . ' (' . $fields . ') values (' . $placeholders . ')';
+
+      db()->query($query, $this->attributes);
+
+      return db()->getInsertId();
+
     }
 
     public function loadData () :void {
@@ -49,6 +82,12 @@ abstract class Model extends \Illuminate\Database\Eloquent\Model {
       if(!$labels){
         $labels = $this->labels;
       }
+
+      Validator::addRule('unique', function($field, $value, array $params, array $fields){
+        $data = explode(',',$params[0]);
+        return !($user = db()->findOne($data[0], $value, $data[1]));
+      }, 'Everything you do is wrong. You fail.');
+
       Validator::langDir(WWW . '/lang');
       Validator::lang('ru');
       $validator = new Validator( $data );

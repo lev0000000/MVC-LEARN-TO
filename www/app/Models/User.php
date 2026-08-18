@@ -7,15 +7,14 @@ use PHPFramework\Model;
 
 class User extends Model{
 
-  public $timestamps = false;
 
-  protected $table = "users";
+  protected string $table = "users";
 
-  protected $loaded = ['name','email','password','confirmPassword'];
+  protected array $loaded = ['name','email','password','confirmPassword'];
 
-  protected $fillable = ['name','email','password'];
+  protected array $fillable = ['name','email','password'];
 
-  protected $rules = [
+  protected array $rules = [
     'required' => ['name','email','password','confirmPassword'],
     'email' => ['email'],
     'lengthMin' => [
@@ -23,18 +22,20 @@ class User extends Model{
     ],
     'equals' => [
         ['password','confirmPassword']
+    ],
+    'unique' => [
+        ['email', 'users,email'],
+        ['name', 'users,name']
+
     ]
 ];
 
-protected $labels = [
+protected array $labels = [
     'name' => 'Имя',
     'email'=> 'Почта',
     'password'=> 'Пароль',
     'confirmPassword'=> 'Подтверждение пароля'
 ];
 
-public function phones():HasMany{
-    return $this->hasMany(Phone::class);  
-}
 
 }

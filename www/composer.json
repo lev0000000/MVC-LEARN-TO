@@ -10,6 +10,6 @@
         "php" : ">=8.0",
         "symfony/var-dumper": "^8.1",
         "vlucas/valitron": "^1.4",
-        "illuminate/database": "^13.25"
+        "filp/whoops": "^2.18"
     }
 }

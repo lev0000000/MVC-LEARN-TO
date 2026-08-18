@@ -11,6 +11,7 @@ const CORE = ROOT . "/core";
 const PATH = 'http://localhost:443';
 const WWW = ROOT . '/public';
 const ERROR_LOGS = ROOT . '/tmp/error.log' ;
+const DEBUG = 1;
 
 const DB_SETTINGS = [
     'driver' => 'mysql',

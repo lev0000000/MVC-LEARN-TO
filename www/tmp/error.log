@@ -1,18 +1,4 @@
-[2026-08-17 15:49:34] DB Error:
-        SQLSTATE[HY000] [1045] Access denied for user 'root'@'lamp-php84.lamp_default' (using password: YES)
-[2026-08-17 15:49:56] DB Error:
-        SQLSTATE[HY000] [1049] Unknown database 'fr_loccharset=utf8'
-[2026-08-17 15:49:57] DB Error:
-        SQLSTATE[HY000] [1049] Unknown database 'fr_loccharset=utf8'
-[2026-08-17 16:55:15] DB Error:
-        SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
-[2026-08-17 16:55:17] DB Error:
-        SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
-[2026-08-17 16:55:17] DB Error:
-        SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
-[2026-08-17 16:55:17] DB Error:
-        SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
-[2026-08-17 16:55:17] DB Error:
-        SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
-[2026-08-17 16:55:17] DB Error:
-        SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+[2026-08-18 09:14:24] 
+            Error:Class "App\Controllers\Capsule" not found
+File: /var/www/html/app/Controllers/UserController.php
+Line: 13
