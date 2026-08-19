@@ -12,6 +12,12 @@ const PATH = 'http://localhost:443';
 const WWW = ROOT . '/public';
 const ERROR_LOGS = ROOT . '/tmp/error.log' ;
 const DEBUG = 1;
+const PAGINATION_SETTINGS = [
+    'perPage' => 1,
+    'midSize' => 2,
+    'maxPages'=> 10,
+    'tpl'  =>'pagination/base'
+];
 
 const DB_SETTINGS = [
     'driver' => 'mysql',
