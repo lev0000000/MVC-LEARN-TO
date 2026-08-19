@@ -18,6 +18,7 @@ const PAGINATION_SETTINGS = [
     'maxPages'=> 10,
     'tpl'  =>'pagination/base'
 ];
+const CACHE = ROOT . '/tmp/cache/';
 
 const DB_SETTINGS = [
     'driver' => 'mysql',

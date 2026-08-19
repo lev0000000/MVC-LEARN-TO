@@ -2,7 +2,6 @@
 
 namespace PHPFramework;
 
-use Illuminate\Database\Capsule\Manager as Capsule;
 
 
 class Application
@@ -21,6 +20,10 @@ class Application
 
     public Session $session;
 
+    public Cache $cache;
+
+    protected array $container = [];
+
     public function __construct()
     {
         self::$app = $this;
@@ -30,6 +33,7 @@ class Application
         $this->router = new Router($this->request, $this->response); // экз класса роутинга передает туда созданные классы выше 
         $this->view = new View(LAYOUT);
         $this->session = new Session();
+        $this->cache = new Cache();
         $this->generateCsrfToken();
         // $this->setDbConnection();
         $this->db = new Database();
@@ -46,12 +50,14 @@ class Application
             $this->session->set('csrf_token', bin2hex(random_bytes(32)));
         }
     }
-
-    public function setDbConnection()
+    public function set ($key, $value) :void
     {
-        $capsuel = new Capsule();
-        $capsuel->addConnection(DB_SETTINGS);
-        $capsuel->setAsGlobal();
-        $capsuel->bootEloquent();
+        $this->container[$key] = $value;
     }
+
+    public function get ($key, $default = null)
+    {
+        return isset($this->container[$key]) ? $this->container[$key] : $default;
+    }
+
 }

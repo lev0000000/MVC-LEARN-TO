@@ -64,6 +64,14 @@ function db(){
 }
 
 /**
+ * Summary of cache
+ * @return PHPFramework\Cache
+ */
+function cache() : \PHPFramework\Cache {
+    return app()->cache;
+}
+
+/**
  * Summary of abort:
  * The handler error_page
  * @param mixed $error
