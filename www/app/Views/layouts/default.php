@@ -26,7 +26,6 @@
     <h1></h1>
     <?= get_alerts() ?>
     <?= $this->content ?>
-    <?= app()->get('test') ?>
 
     <script src="<?= base_url('/assets/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
 </body>

@@ -1,10 +1,10 @@
-a:2:{s:4:"data";s:2708:"<!DOCTYPE html>
+a:2:{s:4:"data";s:2129:"<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="263c7f8a0b4ad99ca81c7595dfa253763bcddc525364853d48014a4b66d758dd">    <title>PHPFramework : Users</title>
+    <meta name="csrf-token" content="43f7ac1047c60455cab96fa35d352ada0b25f8546b3c35f890fb2282f88f26d2">    <title>PHPFramework : Home Page</title>
     <link rel="icon" href="http://localhost:443/favicon/favicon.png">
     <link rel="stylesheet" href="http://localhost:443/assets/bootstrap/css/bootstrap.min.css">
 
@@ -38,28 +38,18 @@ a:2:{s:4:"data";s:2708:"<!DOCTYPE html>
         </div>
     </nav>
     <h1></h1>
-        <div class="container">
-    <div class="container">
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-
-            
-            
-            
-            <li class="page-item active">
-                <a class="page-link" href="#" aria-current="page">1</a>
-            </li>
-
-                                                <li class="page-item"><a class="page-link" href="/users?page=2/">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="/users?page=3/">3</a></li>
-                            
-                            <li class="page-item"><a class="page-link" href="/users?page=2/">Next page &gt </a></li>
-            
-                    </ul>
-    </nav>
-</div>            Petya<br>
-    </div>    test value
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
     <script src="http://localhost:443/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 
-</html>";s:8:"end_time";i:1787163877;}
+</html>";s:8:"end_time";i:1787208239;}

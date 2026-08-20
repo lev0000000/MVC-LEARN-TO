@@ -6,7 +6,7 @@
 
 
         public function index(){
-            echo view('home', ['title' => 'Home Page']);
+            return view('home', ['title' => 'Home Page']);
         }
         
          public function dashboard(){

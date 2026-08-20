@@ -41,7 +41,14 @@ class Application
 
     public function run()
     {
-        return $this->router->dispatch(); // из index вызываем диспатч из класса роутинга 
+        $page = $this->cache->get($this->request->rawUri);
+
+        if (!$page) {
+            $page = $this->router->dispatch();
+            $this->cache->set($this->request->rawUri, $page);
+        };
+        
+return $page;
     }
 
     public function generateCsrfToken()
@@ -50,14 +57,13 @@ class Application
             $this->session->set('csrf_token', bin2hex(random_bytes(32)));
         }
     }
-    public function set ($key, $value) :void
+    public function set($key, $value): void
     {
         $this->container[$key] = $value;
     }
 
-    public function get ($key, $default = null)
+    public function get($key, $default = null)
     {
         return isset($this->container[$key]) ? $this->container[$key] : $default;
     }
-
 }

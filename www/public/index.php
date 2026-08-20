@@ -43,7 +43,7 @@ $whoops->register();
 
 require_once CONFIG . '/routes.php';
 
-$app->run();
+echo $app->run();
 
 
 
